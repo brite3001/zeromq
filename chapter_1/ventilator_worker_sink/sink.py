@@ -7,7 +7,7 @@ context = zmq.Context()
 receiver = context.socket(zmq.PULL)
 receiver.bind("tcp://*:5558")
 
-# wait for a message from the sink before starting
+# wait for a message from the ventilator before starting
 s = receiver.recv()
 
 tstart = time.time()

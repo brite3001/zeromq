@@ -13,3 +13,4 @@ while True:
     humidity = randrange(5, 100)
 
     socket.send_string(f"{zipcode} {temperature} {humidity}")
+    time.sleep(0.1)

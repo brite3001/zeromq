@@ -11,9 +11,9 @@ sender.bind("tcp://*:5557")
 sink = context.socket(zmq.PUSH)
 sink.connect("tcp://localhost:5558")
 
-# print("Press enter when the workers are ready")
-# _ = input()
-# print("Sending tasks to workers")
+print("Press enter when the workers are ready")
+_ = input()
+print("Sending tasks to workers")
 
 sink.send(b"0")
 
