@@ -1,0 +1,1 @@
+make sure the broker and worker(s) are started, before booting up the client
