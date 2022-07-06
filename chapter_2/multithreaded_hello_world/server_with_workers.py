@@ -2,7 +2,8 @@ import time
 import threading
 import zmq
 
-def worker_routine(worker_url: str, context: zmq.Context = None):
+def worker_routine(worker_url: str, worker_number: int, context: zmq.Context = None):
+    print('meep')
 
     context = context or zmq.Context.instance()
 
@@ -10,14 +11,14 @@ def worker_routine(worker_url: str, context: zmq.Context = None):
     socket = context.socket(zmq.REP)
     socket.connect(worker_url)
 
-    string = socket.recv()
-    print(f"Received request: [ {string} ]")
-    print('aaaa')
+    while True:
+        string = socket.recv()
+        print(f"Received request: [ {string} ], Processed by Worker: {worker_number}")
 
-    # 'work'
-    time.sleep(0.1)
+        # 'work'
+        time.sleep(1)
 
-    socket.send(b'hello')
+        socket.send(b'hello')
 
 def main():
     """ server routine """
@@ -36,8 +37,7 @@ def main():
     print('zzzz')
 
     for i in range(5):
-        print(i)
-        thread = threading.Thread(target=worker_routine, args=(url_worker,))
+        thread = threading.Thread(target=worker_routine, args=(url_worker, i))
         thread.deamon = True
         thread.start()
     

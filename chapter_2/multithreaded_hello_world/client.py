@@ -10,7 +10,7 @@ print("Connecting to the Pirate Bay")
 socket = context.socket(zmq.REQ)
 socket.connect("tcp://localhost:5555")
 
-for request in range(25):
+for request in range(10):
     print(f"Sending request {request}...")
     socket.send_string("hello")
 
